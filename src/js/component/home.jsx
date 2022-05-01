@@ -1,13 +1,5 @@
 import React from "react";
-import {
-	Container,
-	Row,
-	Col,
-	ListGroup,
-	Card,
-	ListGroupItem,
-} from "react-bootstrap";
-import List from "./List.jsx";
+import { Button, Container, Row, Col } from "react-bootstrap";
 
 //create your first component
 const Home = () => {
@@ -15,17 +7,19 @@ const Home = () => {
 		<Container fluid>
 			<Row>
 				<Col>
-					<h1 className="text-center mt-5">STAR WARS Data</h1>
+					<h1 className="text-center mt-5">Star Wars Data</h1>
 				</Col>
 			</Row>
 			<Row>
 				<Col>
-					<List />
+					<h1>Pagina principal</h1>
 				</Col>
 			</Row>
-			<div className="card-footer text-muted">
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
-			</div>
+			<p>
+				Made by{" "}
+				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
+				love!
+			</p>
 		</Container>
 	);
 };

@@ -3,22 +3,23 @@ import {
 	ListGroup,
 	ListGroupItem,
 	Pagination,
-	PaginationItems,
+	PaginationItem,
 	PaginationNext,
 	PaginationPrev,
 	Button,
 } from "react-bootstrap";
-import { people } from "../apiStarWars.js";
+import Card from "react-bootstrap/Card";
+import { planets } from "../../apiStarWars.js";
+import { Link } from "react-router-dom";
 
-const List = () => {
+const ListPlanets = () => {
 	var [data, setData] = useState([]);
 	var [page, setPage] = useState(1);
-	var [pages, setPages] = useState(1); //me indica el numero de paginas del footer list
-	var [paginationItems, setPaginationItems] = useState([]);
+	var [pages, setPages] = useState(1);
 
 	function irAPagina(id) {
-		people.getQuery(id).then((data) => {
-			console.log("cargando pagina...", id);
+		planets.getQuery(id).then((data) => {
+			console.log("Cargando pagina ... ", id);
 			// Se actualizan los valores del estado
 			setData(data.results);
 			setPage(id);
@@ -29,8 +30,9 @@ const List = () => {
 	}
 
 	function siguientePagina() {
-		if (page < pages);
-		irAPagina(page + 1);
+		if (page < pages) {
+			irAPagina(page + 1);
+		}
 	}
 
 	function previaPagina() {
@@ -38,9 +40,6 @@ const List = () => {
 			irAPagina(page - 1);
 		}
 	}
-
-	//people.getById(1).then((data) => console.log(data));
-	//people.getQuery().then((data) => console.log(data));
 
 	useEffect(() => {
 		console.log("Componente montado");
@@ -52,25 +51,43 @@ const List = () => {
 
 	useEffect(() => {
 		console.log("Actualizando paginas");
-		actualizarPaginacion();
+		// actualizarPaginacion();
 		return () => {
 			console.log("Finalizada la actualizacion de paginas");
 		};
-	}, [page, pages]);
+	}, [pages, pages]);
 
 	function getItems() {
 		if (!data) return;
-		return data.map((person) => {
+		return data.map((planet) => {
 			return (
-				<ListGroup.Item key={person.uid}>{person.name}</ListGroup.Item>
+				<ListGroup.Item key={planet.uid}>
+					<Card style={{ width: "18rem" }}>
+						<Card.Img
+							className="img-fluid"
+							variant="top"
+							height="50"
+							src={planet.img}
+						/>
+						<Card.Body>
+							<Card.Title>{planet.name}</Card.Title>
+							<Link
+								className="btn btn-primary"
+								to={`/planets/${planet.uid}`}>
+								Leer Mas
+							</Link>
+							{/* <Button variant="primary">Leer más</Button> */}
+						</Card.Body>
+					</Card>
+				</ListGroup.Item>
 			);
 		});
 	}
 
-	function actualizarPaginacion() {
-		var tmp = [];
-		for (var i = 1; i <= pages; i++) {
-			tmp.push(
+	function paginationItems() {
+		var items = [];
+		for (let i = 1; i <= pages; i++) {
+			items.push(
 				<Pagination.Item
 					onClick={() => irAPagina(i)}
 					key={i}
@@ -79,22 +96,20 @@ const List = () => {
 				</Pagination.Item>
 			);
 		}
-		setPaginationItems(tmp);
+		return items;
 	}
 
 	return (
 		<div>
 			<ListGroup horizontal style={{ overflowX: "scroll" }}>
-				{" "}
 				{getItems()}
 			</ListGroup>
 			<Pagination>
 				<Pagination.Prev onClick={previaPagina} />
-				{paginationItems}
+				{paginationItems()}
 				<Pagination.Next onClick={siguientePagina} />
 			</Pagination>
 		</div>
 	);
 };
-
-export default List;
+export default ListPlanets;

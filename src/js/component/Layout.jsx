@@ -1,21 +1,28 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import { Container } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Layout = () => {
 	return (
 		<div>
-			<h1> MY API STARWARS</h1>
-			<nav>
-				<ul>
-					<li>
-						<Link to="/">Home</Link>
-					</li>
-					<li>
-						<Link to="/about">About</Link>
-					</li>
-				</ul>
-			</nav>
+			<Navbar bg="light" expand="lg">
+				<Container>
+					<LinkContainer to="/">
+						<Navbar.Brand href="#home">Star wars App</Navbar.Brand>
+					</LinkContainer>
+					<Nav className="me-auto">
+						<LinkContainer to="/personas">
+							<Nav.Link href="#">Personas</Nav.Link>
+						</LinkContainer>
+						<LinkContainer to="/planets">
+							<Nav.Link href="#">Planets</Nav.Link>
+						</LinkContainer>
+					</Nav>
+				</Container>
+			</Navbar>
 			<Outlet />
 		</div>
 	);

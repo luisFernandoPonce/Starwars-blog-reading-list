@@ -1,5 +1,5 @@
 import ListVehicles from "./List.jsx";
-import Vehicles from "./vehicles.jsx";
+import Vehicle from "./vehicles.jsx";
 
 export default ListVehicles;
-export { Vehicles };
+export { Vehicle };

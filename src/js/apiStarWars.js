@@ -88,4 +88,45 @@ const planets = {
 		}
 	},
 };
-export { people, planets };
+
+const vehicles = {
+	getById: async (id) => {
+		try {
+			const resp = await fetch(`${baseUrl}vehicles/${id}`);
+			if (resp.ok) {
+				let res = await resp.json();
+				return {
+					img: `https://starwars-visualguide.com/assets/img/vehicles/${res.result.uid}.jpg`,
+					...res.result.properties,
+				};
+			}
+			console.error(resp.status, resp.statusText);
+			return [];
+		} catch (error) {
+			console.error("Error en la api", error);
+			return [];
+		}
+	},
+	getQuery: async (page = 1, limit = 10) => {
+		try {
+			const resp = await fetch(
+				`${baseUrl}vehicles/?limit=${limit}&page=${page}`
+			);
+			if (resp.ok) {
+				let data = await resp.json();
+				data.results = data.results.map((vehicle) => {
+					return {
+						img: `https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`,
+						...vehicle,
+					};
+				});
+				return data;
+			}
+			console.error(resp.status, resp.statusText);
+		} catch (error) {
+			console.error(resp.status, resp.statusText);
+			return [];
+		}
+	},
+};
+export { people, planets, vehicles };

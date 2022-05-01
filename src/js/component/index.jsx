@@ -4,6 +4,7 @@ import Home from "./home.jsx";
 import Layout from "./Layout.jsx";
 import ListPeople, { People } from "./people"; //se hace referencia a la carpeta
 import ListPlanets, { Planets } from "./planets";
+import ListVehicles, { Vehicles } from "./vehicles";
 
 const Index = () => {
 	return (
@@ -16,6 +17,8 @@ const Index = () => {
 						<Route path="personas/:id" element={<People />} />
 						<Route path="planets" element={<ListPlanets />} />
 						<Route path="planets/:id" element={<Planets />} />
+						<Route path="vehicles" element={<ListVehicles />} />
+						<Route path="vehicles/:id" element={<Vehicles />} />
 					</Route>
 				</Routes>
 			</BrowserRouter>

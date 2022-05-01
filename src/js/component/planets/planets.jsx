@@ -24,6 +24,8 @@ const Planet = () => {
 					<h5>diameter: {planet.diameter}</h5>
 					<h5>rotation_period: {planet.rotation_period}</h5>
 					<h5>gravity: {planet.gravity}</h5>
+					<h5>clima: {planet.climate}</h5>
+					<h5>Terreno: {planet.terrain}</h5>
 					<Link
 						className="btn btn-primary"
 						to={`/planets/${planet.uid}`}>

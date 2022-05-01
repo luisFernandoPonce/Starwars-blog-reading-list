@@ -20,6 +20,9 @@ const Layout = () => {
 						<LinkContainer to="/planets">
 							<Nav.Link href="#">Planets</Nav.Link>
 						</LinkContainer>
+						<LinkContainer to="/vehicles">
+							<Nav.Link href="#">Vehicles</Nav.Link>
+						</LinkContainer>
 					</Nav>
 				</Container>
 			</Navbar>

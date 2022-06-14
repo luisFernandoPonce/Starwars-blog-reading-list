@@ -7,12 +7,12 @@ const Home = () => {
 		<Container fluid>
 			<Row>
 				<Col>
-					<h1 className="text-center mt-5">Star Wars Data</h1>
+					<h1 className="text-center mt-5">Star Wars Data Apis</h1>
 				</Col>
 			</Row>
 			<Row>
 				<Col>
-					<h1>Pagina principal</h1>
+					<h1>Pagina incial</h1>
 				</Col>
 			</Row>
 			<p>
